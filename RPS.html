@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+
+    <script>
+
+
+        
+        game();
+
+        function game(){
+            let wins = 0;
+
+            for(let count =0; count < 5; count++){
+
+                playerSelection = window.prompt("Insert a move Rock Paper or Scissors")
+
+                let match = playRound(playerSelection, computerPlay());
+                console.log(match);
+
+                if(match.includes("Win"))
+                    wins++;
+            }
+
+            if(wins > 2)
+                console.log("Congratulation You Won!")
+            else
+                console.log("): Sad moment, You Lose!")
+        }
+
+        function playRound(playerSelection, computerSelection){
+
+            let win;//variavel guarda valores que indicam o resultado do jogo: -1 se empate, 0 se derrota do jogador e 1 caso vitoria
+            playerSelection = playerSelection.toLowerCase();//selecao do jogador vai para caixa baixa
+            //switch case com opcao do computador
+            switch (computerSelection){
+
+                case 'Rock':
+
+                    switch (playerSelection){
+                        case 'rock':
+                            win = -1;
+                            break;
+                        case "paper":
+                            win = 1;
+                            break;
+                        case 'scissors':
+                            win = 0;
+                            break;
+                        default:
+                            return 'Invalid Entry';
+                        
+
+                    }
+                    break;
+
+                case 'Paper':
+                    switch (playerSelection){
+                        case 'rock':
+                            win = 0;
+                            break;
+                        case 'paper':
+                            win = -1;
+                            break;
+                        case 'scissors':
+                            win = 1;
+                            break;
+                        default:
+                            return 'Invalid Entry';
+                        
+
+                    }
+                    break;
+
+                case 'Scissors':
+                    switch (playerSelection){
+                        case 'rock':
+                            win = 1;
+                            break;
+                        case 'paper':
+                            win = 0;
+                            break;
+                        case 'scissors':
+                            win = -1;
+                            break;
+                        default:
+                            return 'Invalid Entry';
+                            
+                    }
+                    break;
+
+            }
+
+            if(win == 1)
+                return "You Win! " + playerSelection + " beats " + computerSelection;
+            if(win == 0)
+                return "You Lost! " + computerSelection + " beats " + playerSelection;
+            if(win == -1)
+                return "That'a Draw, both playerd " + computerSelection;
+
+        }
+
+
+        function computerPlay(){
+
+            let random = Math.floor(Math.random() * (9))%3;
+            console.log(random);
+            switch (random){
+                case 0:
+                    return 'Rock';
+                case 1:
+                    return 'Paper';
+                case 2:
+                    return 'Scissors';
+            }
+
+        }
+    </script>
+</body>
+</html>
